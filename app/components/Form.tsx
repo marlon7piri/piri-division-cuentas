@@ -1,5 +1,5 @@
 'use client'
-import React, { FormEvent, useEffect, useState, ChangeEvent } from 'react'
+import React, { FormEvent,FormEventHandler, useEffect, useState, ChangeEvent } from 'react'
 
 interface ClientesInt {
   id: string
