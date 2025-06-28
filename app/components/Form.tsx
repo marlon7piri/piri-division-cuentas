@@ -18,7 +18,7 @@ interface CuentaInt {
 const Form = () => {
   const [clientes, setClientes] = useState<ClientesInt[]>([])
   const [nombre, setNombre] = useState<string>("")
-  const [total, setTotal] = useState<number>(0)
+  const [total, setTotal] = useState<number | null>(null)
   const [cuenta, setCuenta] = useState<CuentaInt>({
     subtotal: 0.0,
     iva: 0.0,
@@ -37,14 +37,14 @@ const Form = () => {
   }
 
   useEffect(() => {
-    setTotal(() => {
-      if (!cuenta.iva || !cuenta.subtotal) {
-        return null
-      } else {
-        return parseFloat((cuenta.iva + cuenta.subtotal).toFixed(2))
-      }
-    })
-  }, [cuenta])
+  setTotal(() => {
+    if (typeof cuenta?.iva !== 'number' || typeof cuenta?.subtotal !== 'number') {
+      return null;
+    }
+
+    return parseFloat((cuenta.iva + cuenta.subtotal).toFixed(2));
+  });
+}, [cuenta]);
 
   const handlerMonto = (value: string, id: string) => {
 
