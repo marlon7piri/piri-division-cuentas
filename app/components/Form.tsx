@@ -2,6 +2,7 @@
 import { table } from 'console'
 import React, { FormEvent,FormEventHandler, useEffect, useState, ChangeEvent } from 'react'
 import toast from 'react-hot-toast'
+import CustomContainer from './CustomContainer'
 
 interface ClientesInt {
   id: string
@@ -81,10 +82,11 @@ setError("Tienes que tener un total")
 
   const notify = () => toast.success('Cliente agregado.');
   return (
-    <div className='bg-sky-300 w-full min-h-screen py-20'>
-      <form
+    <CustomContainer>
+        <div className='py-20'>
+<form
         onSubmit={addPeople}
-        className='rounded-md bg-slate-900 text-slate-50 p-10 w-3/4 m-auto flex flex-col gap-5'
+        className='rounded-md bg-slate-900 text-slate-50 p-10  w-[calc(100%-20%)] m-auto flex flex-col gap-5'
       >
         <label htmlFor=''>Nombre del cliente:</label>
         <input
@@ -126,7 +128,7 @@ setError("Tienes que tener un total")
         <p className={`${!isOk ? "text-red-700" : "text-green-600"} text-center font-black`}>{error}</p>
       </div>
 
-      <div className='w-full h-auto mt-5 p-4'>
+      <div className='max-w-[600px] m-auto h-auto mt-5 p-4'>
         {clientes.length === 0 ? (
           <p className='w-full text-center'>No hay clientes agregados</p>
         ) : (
@@ -169,7 +171,9 @@ setError("Tienes que tener un total")
           
         )}
       </div>
-    </div>
+        </div>
+      
+    </CustomContainer>
   )
 }
 
